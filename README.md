@@ -1,2 +1,4 @@
 # Amplicon-sequencing-analysis-
-Analizing the data by Mothur or Usearch
+This workfolw is used to analyze amplicon data by USEARCH.
+
+
