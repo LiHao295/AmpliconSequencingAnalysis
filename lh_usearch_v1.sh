@@ -7,7 +7,7 @@
 #####    https://www.mothur.org/     #####
 ##########################################
 
-###1.Make contigs, filter the seqs and split
+###1.Make contigs, filter the seqs and split groups by mothur
 mothur "#make.contigs(ffastq=L1_1.clean.fq,rfastq=L1_2.clean.fq,processors=50);trim.seqs(fasta=L1_1.clean.trim.contigs.fasta,oligos=V4F.txt,minlength=200,maxlength=275,maxambig=0,maxhomop=8,bdiffs=0,pdiffs=0,tdiffs=0);trim.seqs(fasta=L1_1.clean.trim.contigs.scrap.fasta,oligos=V4R.txt,minlength=200,maxlength=275,maxambig=0,maxhomop=8,bdiffs=0,pdiffs=0,tdiffs=0,flip=T);"
 cat hos_L1_1.clean.trim.contigs.scrap.trim.fasta hos_L1_1.clean.trim.contigs.trim.fasta > hos.fasta
 cat hos_L1_1.clean.trim.contigs.groups hos_L1_1.clean.trim.contigs.scrap.groups > hos.group
@@ -19,7 +19,7 @@ mothur "#split.groups(fasta=hos.fasta,group=hos.group,groups=all);"
  for i in $fa;do k=`basename $i .fasta`;perl rename_fasta.pl -i $i -o $i.fa -n $k;done
  cat *.fa >hos_v4.fasta
 
-###3. USEARCH
+###3.Analysis by USEARCH
 ###3.1  unique the seqs
 usearch -fastx_uniques hos_v4.fasta -fastaout hos_v4_unique.fasta -minuniquesize 1 -sizeout -threads 30
 
